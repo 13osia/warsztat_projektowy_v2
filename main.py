@@ -221,7 +221,7 @@ def main():
                 Zgodnie z badaniami marketingowymi, przyznaliśmy plusy właściwościom pralek. Im wyższa liczba plusów, tym ważniejsza dla przeciętnego użytkownika jest dana właściwość.
                 """)
 
-                st.image("instrukcja.png", use_column_width=True)
+                st.image("instrukcja.png", use_container_width=True)
 
                 st.write("""
                 Dla przeciętnego konsumenta najważniejszą właściwością jest klasa energetyczna wyrażona w literach B, C, D, E, gdzie B ma najwyższą klasę energetyczną, kolejne litery C, D wskazują na niższe klasy energetyczne, zaś E wskazuje najniższą klasę energetyczną. Właściwość ta jako najważniejsza ma sześć plusów.
@@ -249,7 +249,7 @@ def main():
 
         # Wyświetlanie odpowiedniego obrazu dla zadania
         image_path = task_images[st.session_state.task_number - 1]
-        st.image(image_path, caption=f"Obraz do zadania {st.session_state.task_number}", use_column_width=True)
+        st.image(image_path, caption=f"Obraz do zadania {st.session_state.task_number}", use_container_width=True)
 
                 # Dodanie opisu do Zadania 1
         if st.session_state.task_number == 1:
