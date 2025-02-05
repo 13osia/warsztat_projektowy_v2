@@ -27,6 +27,9 @@ def send_email(subject, body, recipient):
     except Exception as e:
         print(f"Unexpected error: {e}")
 
+def go_to_summary():
+    st.session_state.page = "summary"
+
 def main():
     st.set_page_config(page_title="Ankieta", page_icon="📋", layout="centered")
 
@@ -80,7 +83,7 @@ def main():
     ]
 
     if st.session_state.page == 'start':
-        st.title("Ocena trafności decyzji w wieloatrybutowych zadaniach wyboru pralek.")
+        st.title("Ocena trafności decyzji w zadaniach wyboru pralek.")
         st.write("""
         Nazywam się Zuzanna Bosiacka i jestem studentką Uniwersytetu SWPS na kierunku psychologia i informatyka. Przeprowadzam badanie, które jest częścią mojej pracy dyplomowej. Celem tego badania jest zrozumienie, jak ludzie oceniają decyzje dotyczące wyboru produktów, takich jak pralki, na podstawie dostępnych informacji i rekomendacji.
 
@@ -93,7 +96,7 @@ def main():
         1. Zapoznanie się z opisami pralek i rekomendacją najlepszej z nich.
         2. Odpowiedź na pytania dotyczące tego, czy zgadzasz się z wyborem oraz co o nim myślisz.
 
-        Twoje zdanie jest dla mnie ważne. Odpowiadaj szczerze i bez obaw – każda odpowiedź ma znaczenie. Twoje odpowiedzi pomogą nam lepiej zrozumieć proces podejmowania decyzji oraz ich ocenę. Całość zajmie około [do zweryfikowania].
+        Twoje zdanie jest dla mnie ważne. Odpowiadaj szczerze i bez obaw – każda odpowiedź ma znaczenie. Twoje odpowiedzi pomogą nam lepiej zrozumieć proces podejmowania decyzji oraz ich ocenę. Całość zajmie około 15 min.
 
         Udział w badaniu jest całkowicie dobrowolny. Możesz przerwać udział w dowolnym momencie, bez podawania przyczyny.
 
@@ -221,7 +224,7 @@ def main():
                 Zgodnie z badaniami marketingowymi, przyznaliśmy plusy właściwościom pralek. Im wyższa liczba plusów, tym ważniejsza dla przeciętnego użytkownika jest dana właściwość.
                 """)
 
-                st.image("instrukcja.png", use_container_width=True)
+                st.image("instrukcja.png", use_column_width=True)
 
                 st.write("""
                 Dla przeciętnego konsumenta najważniejszą właściwością jest klasa energetyczna wyrażona w literach B, C, D, E, gdzie B ma najwyższą klasę energetyczną, kolejne litery C, D wskazują na niższe klasy energetyczne, zaś E wskazuje najniższą klasę energetyczną. Właściwość ta jako najważniejsza ma sześć plusów.
@@ -245,11 +248,11 @@ def main():
 
     elif st.session_state.page == 'task_page':
         st.title(f"Zadanie {st.session_state.task_number} z 12")
-        st.write(f"To jest zadanie numer {st.session_state.task_number}. Wykonaj odpowiednie instrukcje.")
+        st.write(f"To jest zadanie numer {st.session_state.task_number}. Zapoznaj się z poniższymi danymi oraz dokonanym wyborem pralki, a następnie odpowiedz na znajdujące się poniżej pytania.")
 
         # Wyświetlanie odpowiedniego obrazu dla zadania
         image_path = task_images[st.session_state.task_number - 1]
-        st.image(image_path, caption=f"Obraz do zadania {st.session_state.task_number}", use_container_width=True)
+        st.image(image_path, caption=f"Obraz do zadania {st.session_state.task_number}", use_column_width=True)
 
                 # Dodanie opisu do Zadania 1
         if st.session_state.task_number == 1:
@@ -462,30 +465,49 @@ def main():
             index=None  # Brak domyślnej wartości
         )
 
-        agree_scale = st.slider(
+        agree_scale = st.radio(
             "Na ile zgadzasz się z wyborem rekomendowanej pralki?",
-            1, 5,
+            [
+            "Zupełnie się nie zgadzam",
+            "Nie zgadzam się",
+            "Trochę się nie zgadzam, trochę się zgadzam",
+            "Zgadzam się",
+            "Całkowicie się zgadzam"
+            ],
             key=f"scale_{st.session_state.task_number}",
-            help="1: Zupełnie się nie zgadzam, 2: Nie zgadzam się, 3: Trochę się nie zgadzam, trochę się zgadzam, 4: Zgadzam się, 5: Całkowicie się zgadzam"
+            index=None  # Brak domyślnej wartości
         )
+
 
         justification = st.text_area(
             "Uzasadnij swoją odpowiedź:",
             key=f"justification_{st.session_state.task_number}"
         )
 
-        clarity_scale = st.slider(
+        clarity_scale = st.radio(
             "Na ile uzasadnienie wyboru pralki było dla Ciebie zrozumiałe?",
-            1, 5,
+            [
+                "Zupełnie niezrozumiałe",
+                "Niezrozumiałe",
+                "Trochę niezrozumiałe, trochę zrozumiałe",
+                "Zrozumiałe",
+                "Bardzo zrozumiałe"
+            ],
             key=f"clarity_{st.session_state.task_number}",
-            help="1: Zupełnie niezrozumiałe, 2: Niezrozumiałe, 3: Trochę niezrozumiałe, trochę zrozumiałe, 4: Zrozumiałe, 5: Bardzo zrozumiałe"
+            index=None,  # Brak domyślnej wartości
         )
 
-        consideration_scale = st.slider(
+        consideration_scale = st.radio(
             "Na ile uważasz, że uwzględniono wszystkie istotne parametry?",
-            1, 5,
+            [
+                "Zupełnie nie uwzględniono",
+                "Nie uwzględniono",
+                "Trochę nie uwzględniono, trochę uwzględniono",
+                "Uwzględniono",
+                "Całkowicie uwzględniono"
+            ],
             key=f"consideration_{st.session_state.task_number}",
-            help="1: Zupełnie nie uwzględniono, 2: Nie uwzględniono, 3: Trochę nie uwzględniono, trochę uwzględniono, 4: Uwzględniono, 5: Całkowicie uwzględniono"
+            index=None,  # Brak domyślnej wartości
         )
 
         if st.button("Dalej"):
@@ -510,19 +532,22 @@ def main():
                 go_to_next_task()  # Przejdź do następnego zadania
 
     elif st.session_state.page == 'thank_you':
-        st.title("Dziękuję za udział w badaniu!")
+        st.title("Ostatnie pytania przed zakończeniem")
 
         # GRUPA EKSPERYMENTALNA - podsumowanie i pytania
         if st.session_state.group == 'experimental':
-            st.write("Chciałabym przekazać ważną informację: wszystkie decyzje dotyczące wyboru najlepszej pralki w zadaniach zostały wygenerowane przez system sztucznej inteligencji (AI), a nie przez innego uczestnika.")
-            st.write("Ujawnienie tej informacji dopiero po zakończeniu badania było celowym zabiegiem badawczym, który pozwala nam lepiej zrozumieć, jak ludzie oceniają decyzje podejmowane przez AI w porównaniu do tych podejmowanych przez człowieka.")
-            st.write("Jeśli masz jakiekolwiek pytania dotyczące badania, możesz się ze mną skontaktować pod adresem: **zbosiacka@st.swps.edu.pl**.")
-
             # ZAKTUALIZOWANE PYTANIA DLA GRUPY EKSPERYMENTALNEJ
-            final_q1 = st.slider(
+            final_q1 = st.radio(
                 "W jakim stopniu świadomość, że decyzje podejmowało AI, wpłynęła na Twoje postrzeganie i uzasadnienie tych decyzji?",
-                1, 5, key="final_q1",
-                help="1: W ogóle nie wpłynęła, 2: Nie wpłynęła, 3: Trochę nie wpłynęła, trochę wpłynęła, 4: Wpłynęła, 5: Bardzo wpłynęła"
+                [
+                    "W ogóle nie wpłynęła",
+                    "Nie wpłynęła",
+                    "Trochę nie wpłynęła, trochę wpłynęła",
+                    "Wpłynęła",
+                    "Bardzo wpłynęła"
+                ],
+                key="final_q1",
+                index=None,  # Brak domyślnej wartości
             )
             final_q2 = st.radio(
                 "Czy korzystałeś/aś kiedyś z produktów lub usług opartych na AI?",
@@ -532,28 +557,45 @@ def main():
                 "Jak często korzystasz z technologii opartych na sztucznej inteligencji (np. asystentów głosowych, rekomendacji zakupowych)?",
                 ["Nigdy", "Rzadko", "Czasami", "Często", "Bardzo często"], key="final_q3", index=None
             )
-            final_q4 = st.slider(
+            final_q4 = st.radio(
                 "Jak oceniasz swoje zaufanie do technologii AI?",
-                1, 5, key="final_q4",
-                help="1: Całkowicie nie ufam, 2: Nie ufam, 3: Trochę nie ufam, trochę ufam, 4: Ufam, 5: Całkowicie ufam"
+                [
+                    "Całkowicie nie ufam",
+                    "Nie ufam",
+                    "Trochę nie ufam, trochę ufam",
+                    "Ufam",
+                    "Całkowicie ufam"
+                ],
+                key="final_q4",
+                index=None,  # Brak domyślnej wartości
             )
-            final_q5 = st.slider(
+            final_q5 = st.radio(
                 "Czy wolisz, aby decyzje zakupowe były podejmowane przez człowieka czy technologię AI?",
-                1, 5, key="final_q5",
-                help="1: Zawsze przez człowieka, 2: Najczęściej przez człowieka, rzadko przez AI, 3: Czasami przez człowieka, czasami przez AI, 4: Najczęściej przez AI, rzadko przez człowieka, 5: Zawsze przez AI"
+                [
+                    "Zawsze przez człowieka",
+                    "Najczęściej przez człowieka, rzadko przez AI",
+                    "Czasami przez człowieka, czasami przez AI",
+                    "Najczęściej przez AI, rzadko przez człowieka",
+                    "Zawsze przez AI"
+                ],
+                key="final_q5",
+                index=None,  # Brak domyślnej wartości
             )
 
         # GRUPA KONTROLNA - podsumowanie i pytania
         elif st.session_state.group == 'control':
-            st.write("Celem tego eksperymentu było zrozumienie, jak ludzie oceniają decyzje podejmowane przez systemy sztucznej inteligencji (AI) w porównaniu do ich własnych oczekiwań i doświadczeń.")
-            st.write("Twoje odpowiedzi pomogą mi lepiej zrozumieć, jak zwiększyć przejrzystość i zaufanie do technologii AI. Wyniki badania będą wykorzystywane wyłącznie do celów naukowych i pozostaną anonimowe.")
-            st.write("Jeśli masz jakiekolwiek pytania dotyczące badania, możesz się ze mną skontaktować pod adresem: **zbosiacka@st.swps.edu.pl**.")
 
             # PYTANIA DLA GRUPY KONTROLNEJ
-            final_q1 = st.slider(
-                        "W jakim stopniu świadomość, że decyzje podejmowała inna osoba badana, wpłynęła na Twoje postrzeganie i uzasadnienie tych decyzji?",
-                1, 4, key="final_q1",
-                help="1: W ogóle nie wpłynęła, 2: Nie wpłynęła, 3: Trochę nie wpłynęła, trochę wpłynęła, 4: Wpłynęła"
+            final_q1 = st.radio(
+                "W jakim stopniu świadomość, że decyzje podejmowała inna osoba badana, wpłynęła na Twoje postrzeganie i uzasadnienie tych decyzji?",
+                [
+                    "W ogóle nie wpłynęła",
+                    "Nie wpłynęła",
+                    "Trochę nie wpłynęła, trochę wpłynęła",
+                    "Wpłynęła"
+                ],
+                key="final_q1",
+                index=None,  # Brak domyślnej wartości
             )
             final_q2 = st.radio(
                 "Czy uważasz, że ludzie podejmują trafniejsze decyzje niż AI?",
@@ -563,10 +605,16 @@ def main():
                 "Czy często kierujesz się opiniami innych ludzi przy podejmowaniu decyzji zakupowych?",
                 ["Nigdy", "Rzadko", "Czasami", "Często", "Bardzo często"], key="final_q3",index=None
             )
-            final_q4 = st.slider(
+            final_q4 = st.radio(
                 "Jak oceniasz swoje zaufanie do decyzji innych ludzi?",
-                1, 4, key="final_q4",
-                help="1: Całkowicie nie ufam, 2: Nie ufam, 3: Trochę nie ufam, trochę ufam, 4: Ufam"
+                [
+                    "Całkowicie nie ufam",
+                    "Nie ufam",
+                    "Trochę nie ufam, trochę ufam",
+                    "Ufam"
+                ],
+                key="final_q4",
+                index=None,  # Brak domyślnej wartości
             )
             final_q5 = st.radio(
                 "Czy wolisz, aby decyzje zakupowe były podejmowane przez człowieka czy przez AI?",
@@ -574,7 +622,7 @@ def main():
             )
 
         # Sprawdzenie czy użytkownik wypełnił wszystkie pytania przed wysłaniem
-        if st.button("Zakończ badanie i wyślij odpowiedzi", key="send_final"):
+        if st.button("Dalej", key="send_final"):
             if not all([final_q1, final_q2, final_q3, final_q4, final_q5]):
                 st.error("Proszę odpowiedzieć na wszystkie pytania przed zakończeniem badania.")
             elif 'responses' not in st.session_state or not st.session_state['responses']:
@@ -608,7 +656,29 @@ def main():
                     recipient="ankieta831@gmail.com"
                 )
 
-                st.success(f"Dziękuję za udział w badaniu! Twoje odpowiedzi zostały wysłane.")
+                go_to_summary()
+
+    elif st.session_state.page == "summary":
+
+        if st.session_state.group == "experimental":
+            st.write("""
+            Chciałabym przekazać ważną informację: wszystkie decyzje dotyczące wyboru najlepszej pralki w zadaniach zostały wygenerowane przez system sztucznej inteligencji (AI), a nie przez innego uczestnika badania.
+            Ujawnienie tej informacji dopiero po zakończeniu badania było celowym zabiegiem badawczym, który pozwala nam lepiej zrozumieć, jak ludzie oceniają decyzje podejmowane przez AI w porównaniu do tych podejmowanych przez człowieka.
+
+            Dziękuję za udział w badaniu! Jeśli masz jakiekolwiek pytania dotyczące badania, możesz się ze mną skontaktować pod adresem: **zbosiacka@st.swps.edu.pl**
+            """)
+
+        elif st.session_state.group == "control":
+            st.write("""
+            Celem tego badania było zrozumienie, jak ludzie oceniają decyzje podejmowane przez systemy sztucznej inteligencji (AI) w porównaniu do ich własnych oczekiwań i doświadczeń.
+
+            Dziękujemy za Twój udział! Twoje odpowiedzi pomogą nam lepiej zrozumieć, jak zwiększyć przejrzystość i zaufanie do technologii AI.
+
+            Jeśli masz jakiekolwiek pytania dotyczące badania, możesz się skontaktować pod adresem:
+            **zbosiacka@st.swps.edu.pl**
+            """)
+
+
 
 if __name__ == "__main__":
     main()
