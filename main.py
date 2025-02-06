@@ -238,7 +238,7 @@ def main():
 
                 st.write("""
                     Twoim zadaniem jest:
-                    - Zapoznanie się z opisami pralek i wyborem sztucznej inteligencji.
+                    - Zapoznanie się z opisami pralek i wyborem innego uczestnika badania.
                     - Odpowiedź na pytania dotyczące tego, czy zgadzasz się z przedstawioną decyzją oraz uzasadnienia swojej opinii.
                     """)
 
