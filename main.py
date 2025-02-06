@@ -4,6 +4,9 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 import uuid
+import time  # Importujemy moduł do obsługi czasu
+
+
 
 def send_email(subject, body, recipient):
     sender_email = "ankieta831@gmail.com"  # E-mail systemowy
@@ -50,6 +53,9 @@ def main():
 
     if 'user_id' not in st.session_state:
         st.session_state.user_id = f"user_{uuid.uuid4().hex[:8]}"
+
+    if 'start_time' not in st.session_state:
+        st.session_state.start_time = time.time()
 
     def go_to_next_page(next_page):
         st.session_state.page = next_page
@@ -190,7 +196,7 @@ def main():
             Zgodnie z badaniami marketingowymi, przyznaliśmy plusy właściwościom pralek. Im wyższa liczba plusów, tym ważniejsza dla przeciętnego użytkownika jest dana właściwość.
             """)
 
-            st.image("instrukcja.png", use_container_width=True)
+            st.image("instrukcja.png", use_column_width=True)
 
             st.write("""
             Dla przeciętnego konsumenta najważniejszą właściwością jest klasa energetyczna wyrażona w literach B, C, D, E, gdzie B ma najwyższą klasę energetyczną, kolejne litery C, D wskazują na niższe klasy energetyczne, zaś E wskazuje najniższą klasę energetyczną. Właściwość ta jako najważniejsza ma sześć plusów.
@@ -252,11 +258,23 @@ def main():
 
         # Wyświetlanie odpowiedniego obrazu dla zadania
         image_path = task_images[st.session_state.task_number - 1]
-        st.image(image_path, caption=f"Obraz do zadania {st.session_state.task_number}", use_container_width=True)
+        st.image(image_path, caption=f"Obraz do zadania {st.session_state.task_number}", use_column_width=True)
 
                 # Dodanie opisu do Zadania 1
         if st.session_state.task_number == 1:
-            st.subheader("Najlepsza pralka 3:")
+            if st.session_state.group == "experimental":
+                st.markdown(f"""
+                <h3 style='color: #77AD78; font-weight: bold;'>
+                    Najlepsza według innej osoby badanej jest pralka 3:
+                </h3>
+                """, unsafe_allow_html=True)
+            else:
+                st.markdown(f"""
+                <h3 style='color: #77AD78; font-weight: bold;'>
+                    Najlepsza według AI jest pralka 3:
+                </h3>
+                """, unsafe_allow_html=True)
+
             st.write("""
             **Zalety:**
             - Duża pojemność bębna (8 kg) (++), co sprawdza się w przypadku większych prań.
@@ -272,7 +290,19 @@ def main():
             """)
 
         if st.session_state.task_number == 2:
-            st.subheader("Najlepsza pralka 1:")
+            if st.session_state.group == "experimental":
+                st.markdown(f"""
+                <h3 style='color: #77AD78; font-weight: bold;'>
+                    Najlepsza według innej osoby badanej jest pralka 1:
+                </h3>
+                """, unsafe_allow_html=True)
+            else:
+                st.markdown(f"""
+                <h3 style='color: #77AD78; font-weight: bold;'>
+                    Najlepsza według AI jest pralka 1:
+                </h3>
+                """, unsafe_allow_html=True)
+
             st.write("""
             **Zalety:**
             - Posiada program szybki (+++), co zwiększa jej funkcjonalność, szczególnie przy szybkim praniu codziennym.
@@ -288,7 +318,18 @@ def main():
             """)
 
         if st.session_state.task_number == 3:
-            st.subheader("Najlepsza pralka 1:")
+            if st.session_state.group == "experimental":
+                st.markdown(f"""
+                <h3 style='color: #77AD78; font-weight: bold;'>
+                    Najlepsza według innej osoby badanej jest pralka 1:
+                </h3>
+                """, unsafe_allow_html=True)
+            else:
+                st.markdown(f"""
+                <h3 style='color: #77AD78; font-weight: bold;'>
+                    Najlepsza według AI jest pralka 1:
+                </h3>
+                """, unsafe_allow_html=True)
             st.write("""
             **Zalety:**
             - Obecność programu szybkiego (+++), co pozwala na szybsze pranie przy mniejszym zużyciu energii i czasu, co jest szczególnie przydatne w codziennym użytkowaniu.
@@ -305,7 +346,18 @@ def main():
             """)
 
         if st.session_state.task_number == 4:
-            st.subheader("Najlepsza pralka 3:")
+            if st.session_state.group == "experimental":
+                st.markdown(f"""
+                <h3 style='color: #77AD78; font-weight: bold;'>
+                    Najlepsza według innej osoby badanej jest pralka 3:
+                </h3>
+                """, unsafe_allow_html=True)
+            else:
+                st.markdown(f"""
+                <h3 style='color: #77AD78; font-weight: bold;'>
+                    Najlepsza według AI jest pralka 3:
+                </h3>
+                """, unsafe_allow_html=True)
             st.write("""
             **Zalety:**
             - Najlepsza klasa energetyczna B (+++++), co istotnie obniża koszty eksploatacji.
@@ -321,7 +373,18 @@ def main():
             """)
 
         if st.session_state.task_number == 5:
-            st.subheader("Najlepsza pralka 2:")
+            if st.session_state.group == "experimental":
+                st.markdown(f"""
+                <h3 style='color: #77AD78; font-weight: bold;'>
+                    Najlepsza według innej osoby badanej jest pralka 2:
+                </h3>
+                """, unsafe_allow_html=True)
+            else:
+                st.markdown(f"""
+                <h3 style='color: #77AD78; font-weight: bold;'>
+                    Najlepsza według AI jest pralka 2:
+                </h3>
+                """, unsafe_allow_html=True)
             st.write("""
             **Zalety:**
             - Program szybki (+++), co zwiększa funkcjonalność i elastyczność użytkowania.
@@ -338,7 +401,19 @@ def main():
             """)
 
         if st.session_state.task_number == 6:
-            st.subheader("Najlepsza pralka 1:")
+            if st.session_state.group == "experimental":
+                st.markdown(f"""
+                <h3 style='color: #77AD78; font-weight: bold;'>
+                    Najlepsza według innej osoby badanej jest pralka 1:
+                </h3>
+                """, unsafe_allow_html=True)
+            else:
+                st.markdown(f"""
+                <h3 style='color: #77AD78; font-weight: bold;'>
+                    Najlepsza według AI jest pralka 1:
+                </h3>
+                """, unsafe_allow_html=True)
+
             st.write("""
             **Zalety:**
             - Program szybki (+++), który zapewnia elastyczność i wygodę w codziennym użytkowaniu.
@@ -355,7 +430,18 @@ def main():
             """)
 
         if st.session_state.task_number == 7:
-            st.subheader("Najlepsza pralka 3:")
+            if st.session_state.group == "experimental":
+                st.markdown(f"""
+                <h3 style='color: #77AD78; font-weight: bold;'>
+                    Najlepsza według innej osoby badanej jest pralka 3:
+                </h3>
+                """, unsafe_allow_html=True)
+            else:
+                st.markdown(f"""
+                <h3 style='color: #77AD78; font-weight: bold;'>
+                    Najlepsza według AI jest pralka 3:
+                </h3>
+                """, unsafe_allow_html=True)
             st.write("""
             **Zalety:**
             - Maksymalna prędkość wirowania 1200 obrotów/min (+), co zapewnia skuteczne odwirowanie.
@@ -372,7 +458,18 @@ def main():
             """)
 
         if st.session_state.task_number == 8:
-            st.subheader("Najlepsza pralka 2:")
+            if st.session_state.group == "experimental":
+                st.markdown(f"""
+                <h3 style='color: #77AD78; font-weight: bold;'>
+                    Najlepsza według innej osoby badanej jest pralka 2:
+                </h3>
+                """, unsafe_allow_html=True)
+            else:
+                st.markdown(f"""
+                <h3 style='color: #77AD78; font-weight: bold;'>
+                    Najlepsza według AI jest pralka 2:
+                </h3>
+                """, unsafe_allow_html=True)
             st.write("""
             **Zalety:**
             - Klasa energetyczna E (++++), co jest lepsze od klasy D w Pralce 1.
@@ -389,7 +486,18 @@ def main():
             """)
 
         if st.session_state.task_number == 9:
-            st.subheader("Najlepsza pralka 1:")
+            if st.session_state.group == "experimental":
+                st.markdown(f"""
+                <h3 style='color: #77AD78; font-weight: bold;'>
+                    Najlepsza według innej osoby badanej jest pralka 1:
+                </h3>
+                """, unsafe_allow_html=True)
+            else:
+                st.markdown(f"""
+                <h3 style='color: #77AD78; font-weight: bold;'>
+                    Najlepsza według AI jest pralka 1:
+                </h3>
+                """, unsafe_allow_html=True)
             st.write("""
             **Zalety:**
             - Najniższe zużycie wody 45 l (++++) – najbardziej oszczędne w zestawieniu.
@@ -406,7 +514,18 @@ def main():
             """)
 
         if st.session_state.task_number == 10:
-            st.subheader("Najlepsza pralka 2:")
+            if st.session_state.group == "experimental":
+                st.markdown(f"""
+                <h3 style='color: #77AD78; font-weight: bold;'>
+                    Najlepsza według innej osoby badanej jest pralka 2:
+                </h3>
+                """, unsafe_allow_html=True)
+            else:
+                st.markdown(f"""
+                <h3 style='color: #77AD78; font-weight: bold;'>
+                    Najlepsza według AI jest pralka 2:
+                </h3>
+                """, unsafe_allow_html=True)
             st.write("""
             **Zalety:**
             - Najniższe zużycie wody (55 l) – najbardziej oszczędne (++++).
@@ -422,7 +541,18 @@ def main():
             """)
 
         if st.session_state.task_number == 11:
-            st.subheader("Najlepsza pralka 2:")
+            if st.session_state.group == "experimental":
+                st.markdown(f"""
+                <h3 style='color: #77AD78; font-weight: bold;'>
+                    Najlepsza według innej osoby badanej jest pralka 2:
+                </h3>
+                """, unsafe_allow_html=True)
+            else:
+                st.markdown(f"""
+                <h3 style='color: #77AD78; font-weight: bold;'>
+                    Najlepsza według AI jest pralka 2:
+                </h3>
+                """, unsafe_allow_html=True)
             st.write("""
             **Zalety:**
             - Klasa energetyczna D (++++) – dobra efektywność, choć nieco niższa od Pralki 1.
@@ -439,7 +569,18 @@ def main():
             """)
 
         if st.session_state.task_number == 12:
-            st.subheader("Najlepsza pralka 3:")
+            if st.session_state.group == "experimental":
+                st.markdown(f"""
+                <h3 style='color: #77AD78; font-weight: bold;'>
+                    Najlepsza według innej osoby badanej jest pralka 3:
+                </h3>
+                """, unsafe_allow_html=True)
+            else:
+                st.markdown(f"""
+                <h3 style='color: #77AD78; font-weight: bold;'>
+                    Najlepsza według AI jest pralka 3:
+                </h3>
+                """, unsafe_allow_html=True)
             st.write("""
             **Zalety:**
             - Największa pojemność bębna 12 kg (++), co jest idealne dla dużych załadunków.
@@ -535,12 +676,12 @@ def main():
         st.title("Ostatnie pytania przed zakończeniem")
 
         # GRUPA EKSPERYMENTALNA - podsumowanie i pytania
-        if st.session_state.group == 'experimental':
+        if st.session_state.group == 'control':
             # ZAKTUALIZOWANE PYTANIA DLA GRUPY EKSPERYMENTALNEJ
             final_q1 = st.radio(
                 "W jakim stopniu świadomość, że decyzje podejmowało AI, wpłynęła na Twoje postrzeganie i uzasadnienie tych decyzji?",
                 [
-                    "W ogóle nie wpłynęła",
+                    "Wcale nie wpłynęła",
                     "Nie wpłynęła",
                     "Trochę nie wpłynęła, trochę wpłynęła",
                     "Wpłynęła",
@@ -550,7 +691,7 @@ def main():
                 index=None,  # Brak domyślnej wartości
             )
             final_q2 = st.radio(
-                "Czy korzystałeś/aś kiedyś z produktów lub usług opartych na AI?",
+                "Jak często korzystasz z produktów lub usług opartych na AI?",
                 ["Nigdy", "Rzadko", "Czasami", "Często", "Bardzo często"], key="final_q2", index=None
             )
             final_q3 = st.radio(
@@ -583,42 +724,44 @@ def main():
             )
 
         # GRUPA KONTROLNA - podsumowanie i pytania
-        elif st.session_state.group == 'control':
+        elif st.session_state.group == 'experimental':
 
             # PYTANIA DLA GRUPY KONTROLNEJ
             final_q1 = st.radio(
                 "W jakim stopniu świadomość, że decyzje podejmowała inna osoba badana, wpłynęła na Twoje postrzeganie i uzasadnienie tych decyzji?",
                 [
-                    "W ogóle nie wpłynęła",
+                    "Wcale nie wpłynęła",
                     "Nie wpłynęła",
                     "Trochę nie wpłynęła, trochę wpłynęła",
-                    "Wpłynęła"
+                    "Wpłynęła",
+                    "Bardzo wpłyneła"
                 ],
                 key="final_q1",
                 index=None,  # Brak domyślnej wartości
             )
             final_q2 = st.radio(
-                "Czy uważasz, że ludzie podejmują trafniejsze decyzje niż AI?",
-                ["Tak", "Nie"], key="final_q2", index=None
+                "Jak często korzystasz z produktów lub usług oprartych na AI",
+                ["Nigdy", "Rzadko", "Czasami", "Często", "Bardzo często"], key="final_q2", index=None
             )
             final_q3 = st.radio(
-                "Czy często kierujesz się opiniami innych ludzi przy podejmowaniu decyzji zakupowych?",
+                "Jak często korzystasz z technologii opartych na sztucznej inteligencji (np. asystentów głosowych, rekomendacji zakupowych)?",
                 ["Nigdy", "Rzadko", "Czasami", "Często", "Bardzo często"], key="final_q3",index=None
             )
             final_q4 = st.radio(
-                "Jak oceniasz swoje zaufanie do decyzji innych ludzi?",
+                "Jak oceniasz swoje zaufanie do technologii AI?",
                 [
                     "Całkowicie nie ufam",
                     "Nie ufam",
                     "Trochę nie ufam, trochę ufam",
-                    "Ufam"
+                    "Ufam",
+                    "Całkowiecie ufam"
                 ],
                 key="final_q4",
                 index=None,  # Brak domyślnej wartości
             )
             final_q5 = st.radio(
-                "Czy wolisz, aby decyzje zakupowe były podejmowane przez człowieka czy przez AI?",
-                ["Człowiek", "AI", "Nie mam zdania"], key="final_q5", index=None
+                "Czy wolisz, aby decyzje zakupowe były podejmowane przez człowieka czy technologię AI?",
+                ["Zawsze przez człowieka", "Najczęściej przez człowieka, rzadko przez AI", "Czasami przez człowieka", "czasami przez AI", "Najczęśiej przez AI, rzadko przez człowieka", "Zawsze przez AI" ], key="final_q5", index=None
             )
 
         # Sprawdzenie czy użytkownik wypełnił wszystkie pytania przed wysłaniem
@@ -628,6 +771,11 @@ def main():
             elif 'responses' not in st.session_state or not st.session_state['responses']:
                 st.error("Proszę upewnić się, że wypełniłeś wszystkie pola przed zakończeniem badania.")
             else:
+                # Obliczenie czasu trwania badania
+                elapsed_time = time.time() - st.session_state.start_time
+                minutes = int(elapsed_time // 60)
+                seconds = int(elapsed_time % 60)
+
                 # Tworzenie wiadomości e-mail z odpowiedziami
                 task_responses = "\n".join([
                     f"Zadanie {task_num}: {response}"
@@ -648,6 +796,8 @@ def main():
                 3. Korzystanie z technologii AI: {final_q3}
                 4. Zaufanie do AI (1-5): {final_q4}
                 5. Preferencje w podejmowaniu decyzji zakupowych (1-5): {final_q5}
+
+                ⏳ Czas trwania badania: {minutes} min {seconds} sek.
                 """
 
                 send_email(
@@ -659,6 +809,8 @@ def main():
                 go_to_summary()
 
     elif st.session_state.page == "summary":
+        st.success("Twoje odpowiedzi zostały zapisane i wysłane.")
+
 
         if st.session_state.group == "experimental":
             st.write("""
@@ -672,7 +824,7 @@ def main():
             st.write("""
             Celem tego badania było zrozumienie, jak ludzie oceniają decyzje podejmowane przez systemy sztucznej inteligencji (AI) w porównaniu do ich własnych oczekiwań i doświadczeń.
 
-            Dziękujemy za Twój udział! Twoje odpowiedzi pomogą nam lepiej zrozumieć, jak zwiększyć przejrzystość i zaufanie do technologii AI.
+            Dziękuję za Twój udział! Twoje odpowiedzi pomogą mi lepiej zrozumieć, jak zwiększyć przejrzystość i zaufanie do technologii AI.
 
             Jeśli masz jakiekolwiek pytania dotyczące badania, możesz się skontaktować pod adresem:
             **zbosiacka@st.swps.edu.pl**
