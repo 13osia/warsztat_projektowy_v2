@@ -188,9 +188,9 @@ def main():
                 """)
 
             st.markdown("""
-                <h3 style='color: #77AD78; font-weight: bold; text-align: center;'>
+                <h4 style='color: #77AD78; font-weight: bold; text-align: center;'>
                     Wybory i rekomendacje zostały wygenerowane przez system sztucznej inteligencji (AI).
-                </h3>
+                </h4>
                 """, unsafe_allow_html=True)
 
             st.write("""
@@ -231,9 +231,9 @@ def main():
                     """)
 
                 st.markdown("""
-                    <h3 style='color: #77AD78; font-weight: bold; text-align: center;'>
+                    <h4 style='color: #77AD78; font-weight: bold; text-align: center;'>
                         Wybory i rekomendacje zostały przygotowane przez inną osobę badaną.
-                    </h3>
+                    </h4>
                     """, unsafe_allow_html=True)
 
                 st.write("""
