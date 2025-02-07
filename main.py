@@ -134,7 +134,7 @@ def main():
         )
 
         st.markdown("Ile lat edukacji ukończyłeś/aś do tej pory?")
-        st.markdown("- np: **6 lat szkoły podstawowej**, 3 lata gimnazjum, 3 lata liceum, 2 lata studiów = **14 lat**")
+        st.markdown("- np: 6 lat szkoły podstawowej, 3 lata gimnazjum, 3 lata liceum, 2 lata studiów = **14 lat**")
 
         education_years = st.text_input("Odpowiedź otwarta:", key="education_years")
 
