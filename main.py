@@ -751,7 +751,7 @@ def main():
                     "Nie wpłynęła",
                     "Trochę nie wpłynęła, trochę wpłynęła",
                     "Wpłynęła",
-                    "Bardzo wpłyneła"
+                    "Bardzo wpłynęła"
                 ],
                 key="final_q1",
                 index=None,  # Brak domyślnej wartości
@@ -771,14 +771,14 @@ def main():
                     "Nie ufam",
                     "Trochę nie ufam, trochę ufam",
                     "Ufam",
-                    "Całkowiecie ufam"
+                    "Całkowicie ufam"
                 ],
                 key="final_q4",
                 index=None,  # Brak domyślnej wartości
             )
             final_q5 = st.radio(
                 "Czy wolisz, aby decyzje zakupowe były podejmowane przez człowieka czy technologię AI?",
-                ["Zawsze przez człowieka", "Najczęściej przez człowieka, rzadko przez AI", "Czasami przez człowieka", "czasami przez AI", "Najczęśiej przez AI, rzadko przez człowieka", "Zawsze przez AI" ], key="final_q5", index=None
+                ["Zawsze przez człowieka", "Najczęściej przez człowieka, rzadko przez AI", "Czasami przez człowieka", "czasami przez AI", "Najczęściej przez AI, rzadko przez człowieka", "Zawsze przez AI" ], key="final_q5", index=None
             )
 
         # Sprawdzenie czy użytkownik wypełnił wszystkie pytania przed wysłaniem
