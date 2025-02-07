@@ -100,7 +100,7 @@ def main():
         1. Zapoznanie się z opisami pralek i rekomendacją najlepszej z nich.
         2. Odpowiedź na pytania dotyczące tego, czy zgadzasz się z wyborem oraz co o nim myślisz.
 
-        Twoje zdanie jest dla mnie ważne. Odpowiadaj szczerze i bez obaw – każda odpowiedź ma znaczenie. Twoje odpowiedzi pomogą nam lepiej zrozumieć proces podejmowania decyzji oraz ich ocenę. Całość zajmie około 15 min.
+        Twoje zdanie jest dla mnie ważne. Odpowiadaj szczerze i bez obaw – każda odpowiedź ma znaczenie. Twoje odpowiedzi pomogą nam lepiej zrozumieć proces podejmowania decyzji oraz ich ocenę. Całość zajmie około 30 min.
 
         Udział w badaniu jest całkowicie dobrowolny. Możesz przerwać udział w dowolnym momencie, bez podawania przyczyny.
 
