@@ -181,7 +181,7 @@ def main():
         if st.session_state.group == 'control':
             st.title("Instrukcja do zadań")
             st.write("""
-                W ramach tego badania otrzymasz serię 12 zadań. W każdym zadaniu przedstawimy Ci opisy trzech różnych pralek wraz z oceną, która z nich jest najlepszym wyborem.
+                W ramach tego badania otrzymasz serię 12 zadań. W każdym zadaniu przedstawię Ci opisy trzech różnych pralek wraz z oceną, która z nich jest najlepszym wyborem.
                 """)
 
             st.markdown("""
@@ -224,7 +224,7 @@ def main():
         elif st.session_state.group == 'experimental':
                 st.title("Instrukcja do zadań")
                 st.write("""
-                    W ramach tego badania otrzymasz serię 12 zadań. W każdym zadaniu przedstawimy Ci opisy trzech różnych pralek wraz z oceną, która z nich jest najlepszym wyborem.
+                    W ramach tego badania otrzymasz serię 12 zadań. W każdym zadaniu przedstawię Ci opisy trzech różnych pralek wraz z oceną, która z nich jest najlepszym wyborem.
                     """)
 
                 st.markdown("""
