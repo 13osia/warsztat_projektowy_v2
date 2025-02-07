@@ -4,13 +4,13 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 import uuid
-import time  # Importujemy moduł do obsługi czasu
+import time 
 
 
 
 def send_email(subject, body, recipient):
-    sender_email = "ankieta831@gmail.com"  # E-mail systemowy
-    sender_password = "elhg snux ihtn lnnx"  # Hasło aplikacyjne Gmail
+    sender_email = "ankieta831@gmail.com" 
+    sender_password = "elhg snux ihtn lnnx" 
 
     message = MIMEMultipart()
     message["From"] = sender_email
@@ -71,9 +71,8 @@ def main():
         else:
             st.session_state.page = 'thank_you'
 
-    # Lista ścieżek do zdjęć
     task_images = [
-        "Zadanie 2.png",    # Obrazek do zadania 1
+        "Zadanie 2.png",  
         "Zadanie 2.png",
         "Zadanie 3.png",
         "Zadanie 4.png",
@@ -84,8 +83,7 @@ def main():
         "Zadanie 9.png",
         "Zadanie 10.png",
         "Zadanie 11.png",
-        "Zadanie 12.png",  # Obrazek do zadania 2
-  # Obrazek do zadania 12
+        "Zadanie 12.png", 
     ]
 
     if st.session_state.page == 'start':
@@ -151,11 +149,10 @@ def main():
             ], key="profession", index=None
         )
 
-        # Jeśli użytkownik wybierze "Inny (proszę podać)", pokaż dodatkowe pole tekstowe
         if profession == "Inny (proszę podać)":
             other_profession = st.text_input("Podaj swój zawód:", key="other_profession")
         else:
-            other_profession = None  # Jeśli nie wybrano "Inny", wartość pozostaje pusta
+            other_profession = None  
 
         location = st.radio(
             "Miejsce zamieszkania:", [
@@ -273,11 +270,9 @@ def main():
         st.title(f"Zadanie {st.session_state.task_number} z 12")
         st.write(f"To jest zadanie numer {st.session_state.task_number}. Zapoznaj się z poniższymi danymi oraz dokonanym wyborem pralki, a następnie odpowiedz na znajdujące się poniżej pytania.")
 
-        # Wyświetlanie odpowiedniego obrazu dla zadania
         image_path = task_images[st.session_state.task_number - 1]
         st.image(image_path, caption=f"Obraz do zadania {st.session_state.task_number}", use_container_width=True)
 
-                # Dodanie opisu do Zadania 1
         if st.session_state.task_number == 1:
             if st.session_state.group == "experimental":
                 st.markdown(f"""
@@ -613,14 +608,13 @@ def main():
             Pralka 3 wyróżnia się najlepszymi parametrami użytkowymi: największą pojemnością bębna, najszybszym wirowaniem oraz oszczędnym zużyciem wody, co czyni ją najbardziej wszechstronnym wyborem.
             """)
 
-        # Dodanie pytań dla każdego zadania
         st.subheader("Pytania:")
 
         agree_choice = st.radio(
             "Czy zgadzasz się z wyborem rekomendowanej pralki?",
             ["Tak", "Nie"],
             key=f"agree_choice_{st.session_state.task_number}",
-            index=None  # Brak domyślnej wartości
+            index=None 
         )
 
         agree_scale = st.radio(
@@ -633,7 +627,7 @@ def main():
             "Całkowicie się zgadzam"
             ],
             key=f"scale_{st.session_state.task_number}",
-            index=None  # Brak domyślnej wartości
+            index=None 
         )
 
 
@@ -652,7 +646,7 @@ def main():
                 "Bardzo zrozumiałe"
             ],
             key=f"clarity_{st.session_state.task_number}",
-            index=None,  # Brak domyślnej wartości
+            index=None, 
         )
 
         consideration_scale = st.radio(
@@ -665,17 +659,15 @@ def main():
                 "Całkowicie uwzględniono"
             ],
             key=f"consideration_{st.session_state.task_number}",
-            index=None,  # Brak domyślnej wartości
+            index=None, 
         )
 
         if st.button("Dalej"):
-            # Sprawdzenie, czy wszystkie pola są wypełnione
             if any(value is None or value == "" for value in [
                 agree_choice, justification
             ]):
                 st.error("Upewnij się, że wszystkie pola zostały wypełnione.")
             else:
-                # Zapisz odpowiedzi do session_state
                 if 'responses' not in st.session_state:
                     st.session_state['responses'] = {}
 
@@ -687,14 +679,14 @@ def main():
                     "Consideration Scale": consideration_scale
                 }
 
-                go_to_next_task()  # Przejdź do następnego zadania
+                go_to_next_task()  
 
     elif st.session_state.page == 'thank_you':
         st.title("Ostatnie pytania przed zakończeniem")
 
         # GRUPA EKSPERYMENTALNA - podsumowanie i pytania
         if st.session_state.group == 'control':
-            # ZAKTUALIZOWANE PYTANIA DLA GRUPY EKSPERYMENTALNEJ
+
             final_q1 = st.radio(
                 "W jakim stopniu świadomość, że decyzje podejmowało AI, wpłynęła na Twoje postrzeganie i uzasadnienie tych decyzji?",
                 [
@@ -705,7 +697,7 @@ def main():
                     "Bardzo wpłynęła"
                 ],
                 key="final_q1",
-                index=None,  # Brak domyślnej wartości
+                index=None,
             )
             final_q2 = st.radio(
                 "Jak często korzystasz z produktów lub usług opartych na AI?",
@@ -725,7 +717,7 @@ def main():
                     "Całkowicie ufam"
                 ],
                 key="final_q4",
-                index=None,  # Brak domyślnej wartości
+                index=None,  
             )
             final_q5 = st.radio(
                 "Czy wolisz, aby decyzje zakupowe były podejmowane przez człowieka czy technologię AI?",
@@ -737,13 +729,12 @@ def main():
                     "Zawsze przez AI"
                 ],
                 key="final_q5",
-                index=None,  # Brak domyślnej wartości
+                index=None, 
             )
 
-        # GRUPA KONTROLNA - podsumowanie i pytania
         elif st.session_state.group == 'experimental':
 
-            # PYTANIA DLA GRUPY KONTROLNEJ
+
             final_q1 = st.radio(
                 "W jakim stopniu świadomość, że decyzje podejmowała inna osoba badana, wpłynęła na Twoje postrzeganie i uzasadnienie tych decyzji?",
                 [
@@ -754,7 +745,7 @@ def main():
                     "Bardzo wpłynęła"
                 ],
                 key="final_q1",
-                index=None,  # Brak domyślnej wartości
+                index=None, 
             )
             final_q2 = st.radio(
                 "Jak często korzystasz z produktów lub usług oprartych na AI",
@@ -774,7 +765,7 @@ def main():
                     "Całkowicie ufam"
                 ],
                 key="final_q4",
-                index=None,  # Brak domyślnej wartości
+                index=None,  
             )
             final_q5 = st.radio(
                 "Czy wolisz, aby decyzje zakupowe były podejmowane przez człowieka czy technologię AI?",
@@ -788,12 +779,11 @@ def main():
             elif 'responses' not in st.session_state or not st.session_state['responses']:
                 st.error("Proszę upewnić się, że wypełniłeś wszystkie pola przed zakończeniem badania.")
             else:
-                # Obliczenie czasu trwania badania
+       
                 elapsed_time = time.time() - st.session_state.start_time
                 minutes = int(elapsed_time // 60)
                 seconds = int(elapsed_time % 60)
 
-                # Tworzenie wiadomości e-mail z odpowiedziami
                 task_responses = "\n".join([
                     f"Zadanie {task_num}: {response}"
                     for task_num, response in st.session_state['responses'].items()
