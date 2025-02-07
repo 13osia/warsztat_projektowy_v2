@@ -194,8 +194,10 @@ def main():
                 Twoim zadaniem jest:
                 - Zapoznanie się z opisami pralek i wyborem sztucznej inteligencji.
                 - Odpowiedź na pytania dotyczące tego, czy zgadzasz się z przedstawioną decyzją oraz uzasadnienia swojej opinii.
+                """)
 
-                W zadaniu zobaczysz tabelę porównującą trzy pralki (Pralka 1, Pralka 2, Pralka 3) pod względem ich kluczowych właściwości i ważności tych właściwości.
+            st.write("""
+                W ramach tego badania otrzymasz serię 12 zadań. W każdym zadaniu przedstawię Ci opisy trzech różnych pralek wraz z oceną, która z nich jest najlepszym wyborem.
                 """)
 
 
