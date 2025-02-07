@@ -232,7 +232,7 @@ def main():
 
                 st.markdown("""
                     <h4 style='color: #77AD78; font-weight: bold; text-align: center;'>
-                        Wybory i rekomendacje zostały przygotowane przez inną osobę badaną.
+                        Wybory i ich uzasadnienia zostały przygotowane przez inną osobę badaną.
                     </h4>
                     """, unsafe_allow_html=True)
 
