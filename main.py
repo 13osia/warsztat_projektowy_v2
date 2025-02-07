@@ -72,7 +72,7 @@ def main():
             st.session_state.page = 'thank_you'
 
     task_images = [
-        "Zadanie 2.png",  
+        "Zadanie 1.png",  
         "Zadanie 2.png",
         "Zadanie 3.png",
         "Zadanie 4.png",
