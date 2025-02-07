@@ -75,7 +75,7 @@ def main():
         "Zadanie 1.png",  
         "Zadanie 2.png",
         "Zadanie 3.png",
-        "Zadanie 4.png",
+        "Zadanie 4a.png",
         "Zadanie 5.png",
         "Zadanie 6.png",
         "Zadanie 7.png",
