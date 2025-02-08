@@ -634,6 +634,9 @@ def main():
             index=None 
         )
 
+        st.write("""
+            **Uwaga:** Przy wyborze odpowiedzi nie kieruj się osobistymi przekonaniami. Jeśli uważasz, że np. pralka 2 jest lepszym wyborem niż pralka 3, uzasadnij to konkretnymi parametrami, np. „Pralka 2 jest lepsza, ponieważ ma lepsze wirowanie niż pralka 3”. Twoje uzasadnienie powinno opierać się na danych i faktach, a nie subiektywnych preferencjach.
+        """)
 
         justification = st.text_area(
             "Uzasadnij swoją odpowiedź:",
