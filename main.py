@@ -637,7 +637,7 @@ def main():
         st.markdown("""
             <div style="color: #D9534F; font-weight: bold; padding: 10px; border-radius: 5px;">
                 <p> <strong>Uwaga:</strong> Przy wyborze odpowiedzi nie kieruj się osobistymi przekonaniami.</p>
-                <p>Jeśli uważasz, że np. pralka 2 jest lepszym wyborem niż pralka 3, uzasadnij to konkretnymi parametrami, np.:</p>
+                <p>Jeśli uważasz, że np. pralka 2 jest lepszym wyborem niż pralka 3, uzasadnij to np.:</p>
                 <p><em>„Pralka 2 jest lepsza, ponieważ ma lepsze wirowanie niż pralka 3.”</em></p>
                 <p>Twoje uzasadnienie powinno opierać się na danych i faktach, a nie subiektywnych preferencjach.</p>
             </div>
