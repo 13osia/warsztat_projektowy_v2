@@ -642,7 +642,7 @@ def main():
             """, unsafe_allow_html=True)
 
         justification = st.text_area(
-            "Uzasadnij swoją odpowiedź:",
+            "Uzasadnij swoją odpowiedź na powyższe pytania wyjaśniając, dlaczego udzieliłeś/aś takich odpowiedzi.",
             key=f"justification_{st.session_state.task_number}"
         )
 
